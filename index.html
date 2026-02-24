@@ -3,27 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mihir Bommisetty — Security-Focused Systems Engineer</title>
-  <meta name="description" content="Portfolio — Security-focused systems engineer building scalable, zero-trust infrastructure." />
+  <title>Mihir Bommisetty — Sr. Full Stack Developer</title>
+  <meta name="description" content="Sr. Full Stack Developer • .NET, Angular, Golang • Microservices • Payments • Accessibility • CI/CD" />
+
   <style>
-    /* ==========================
-       Base + Theme
-    ========================== */
     :root{
       --bg:#0b0f14;
-      --bg2:#0e1420;
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
       --text:#e6edf3;
-      --muted:#8b949e;
+      --muted:#98a2ad;
       --line:rgba(255,255,255,.10);
       --line2:rgba(255,255,255,.06);
-      --accent:#00c2ff;      /* electric blue */
-      --accent2:#7a5cff;     /* subtle purple */
-      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --card:rgba(255,255,255,.035);
+      --card2:rgba(255,255,255,.025);
+      --accent:#00c2ff;
+      --accent2:#7a5cff;
       --radius:18px;
       --radius2:26px;
       --max:1100px;
+      --shadow: 0 18px 55px rgba(0,0,0,.35);
+      --shadow2: 0 14px 38px rgba(0,0,0,.22);
     }
 
     *{ box-sizing:border-box; }
@@ -33,41 +31,34 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       background:
-        radial-gradient(900px 500px at 20% 15%, rgba(0,194,255,.16), transparent 60%),
-        radial-gradient(700px 450px at 80% 20%, rgba(122,92,255,.12), transparent 55%),
-        radial-gradient(900px 500px at 70% 85%, rgba(0,194,255,.08), transparent 65%),
+        radial-gradient(900px 500px at 18% 12%, rgba(0,194,255,.14), transparent 60%),
+        radial-gradient(700px 450px at 82% 18%, rgba(122,92,255,.12), transparent 55%),
+        radial-gradient(900px 500px at 70% 86%, rgba(0,194,255,.08), transparent 65%),
         linear-gradient(180deg, var(--bg), #070b10 55%, var(--bg));
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
     a:hover{ color:var(--text); }
-    img{ max-width:100%; display:block; }
+    strong{ font-weight:700; }
 
-    /* Subtle grid overlay */
     .grid-overlay{
       position:fixed; inset:0;
       pointer-events:none;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+        linear-gradient(to right, rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
       background-size: 56px 56px;
       mask-image: radial-gradient(1200px 800px at 50% 15%, rgba(0,0,0,.85), transparent 70%);
       opacity:.55;
     }
 
-    /* ==========================
-       Layout Helpers
-    ========================== */
     .container{
       width:min(var(--max), calc(100% - 40px));
       margin:0 auto;
     }
 
-    .section{
-      padding: 84px 0;
-      position:relative;
-    }
+    .section{ padding: 84px 0; position:relative; }
 
     .kicker{
       color:var(--muted);
@@ -91,10 +82,16 @@
       margin:0 0 10px;
     }
 
+    .h3{
+      font-size:18px;
+      letter-spacing:-0.01em;
+      margin:0 0 6px;
+    }
+
     .p{
       margin:0;
       color:var(--muted);
-      line-height:1.6;
+      line-height:1.65;
       font-size:16px;
     }
 
@@ -114,12 +111,10 @@
     .divider{
       height:1px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
-      margin: 26px 0 0;
+      margin: 22px 0 0;
     }
 
-    /* ==========================
-       Header / Nav
-    ========================== */
+    /* Header */
     header{
       position:sticky;
       top:0;
@@ -134,14 +129,16 @@
       align-items:center;
       justify-content:space-between;
       padding: 14px 0;
+      gap:14px;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      font-weight:650;
+      font-weight:680;
       letter-spacing:.01em;
+      white-space:nowrap;
     }
 
     .logo{
@@ -157,9 +154,11 @@
     .navlinks{
       display:flex;
       align-items:center;
-      gap:18px;
+      gap:10px;
       color:var(--muted);
       font-size:14px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
     .navlinks a{
@@ -167,16 +166,9 @@
       border-radius:12px;
       transition: background .2s ease, color .2s ease;
     }
-
     .navlinks a:hover{
       background: rgba(255,255,255,.05);
       color:var(--text);
-    }
-
-    .nav-cta{
-      display:flex;
-      gap:10px;
-      align-items:center;
     }
 
     .btn{
@@ -193,13 +185,14 @@
       transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
       user-select:none;
       cursor:pointer;
+      white-space:nowrap;
     }
 
     .btn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.18);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow2);
     }
 
     .btn.primary{
@@ -207,47 +200,12 @@
       border-color: rgba(0,194,255,.25);
       box-shadow: 0 10px 25px rgba(0,194,255,.10);
     }
-
     .btn.primary:hover{
       border-color: rgba(0,194,255,.35);
       box-shadow: 0 14px 35px rgba(0,194,255,.15);
     }
 
-    .hamburger{
-      display:none;
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-    }
-
-    .hamburger span{
-      width:18px; height:2px;
-      background: rgba(255,255,255,.75);
-      display:block;
-      position:relative;
-    }
-    .hamburger span::before,
-    .hamburger span::after{
-      content:"";
-      width:18px; height:2px;
-      background: rgba(255,255,255,.75);
-      position:absolute;
-      left:0;
-    }
-    .hamburger span::before{ top:-6px; }
-    .hamburger span::after{ top:6px; }
-
-    /* ==========================
-       Hero
-    ========================== */
-    .hero{
-      padding: 56px 0 30px;
-    }
-
+    .hero{ padding: 56px 0 30px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -255,297 +213,138 @@
       align-items:stretch;
     }
 
-    .hero-card{
-      border-radius: var(--radius2);
-      padding: 26px 26px 22px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(900px 260px at 0% 0%, rgba(0,194,255,.14), transparent 70%),
-        radial-gradient(700px 260px at 100% 0%, rgba(122,92,255,.10), transparent 60%),
-        rgba(255,255,255,.03);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 18px 55px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-card::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background: linear-gradient(135deg, rgba(0,194,255,.30), transparent 35%, rgba(122,92,255,.22));
-      opacity:.18;
-      pointer-events:none;
-      filter: blur(18px);
-    }
-
-    .hero-top{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:center;
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-meta{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top: 18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-side{
+    .card{
       border-radius: var(--radius2);
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding: 22px;
+      box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
-      box-shadow: 0 18px 55px rgba(0,0,0,.25);
       position:relative;
       overflow:hidden;
     }
 
-    .hero-side .mini-title{
-      font-weight:650;
-      margin:0 0 8px;
-      letter-spacing:-0.01em;
+    .card.hero-card{
+      padding: 26px 26px 22px;
+      background:
+        radial-gradient(900px 260px at 0% 0%, rgba(0,194,255,.14), transparent 70%),
+        radial-gradient(700px 260px at 100% 0%, rgba(122,92,255,.10), transparent 60%),
+        rgba(255,255,255,.03);
     }
 
-    .hero-side .mini{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-      margin:0 0 16px;
+    .card.hero-card::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(135deg, rgba(0,194,255,.30), transparent 35%, rgba(122,92,255,.22));
+      opacity:.16;
+      pointer-events:none;
+      filter: blur(18px);
     }
+
+    .hero-top, .hero-actions, .hero-meta{ position:relative; z-index:1; }
+    .hero-top{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .hero-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px; }
+    .hero-meta{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px; }
+
+    .mini-title{ font-weight:700; margin:0 0 8px; letter-spacing:-0.01em; }
+    .mini{ color:var(--muted); font-size:14px; line-height:1.6; margin:0 0 16px; }
 
     .stats{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
-
     .stat{
       border-radius: 16px;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       padding: 12px 12px;
     }
-
     .stat .k{ color:var(--muted); font-size:12px; margin:0 0 4px; }
-    .stat .v{ font-size:16px; font-weight:650; margin:0; }
+    .stat .v{ font-size:16px; font-weight:700; margin:0; }
 
-    /* ==========================
-       About
-    ========================== */
-    .about-grid{
+    /* Content grids */
+    .grid-2{
       display:grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 22px;
-      align-items:start;
-    }
-
-    .portrait{
-      border-radius: var(--radius2);
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(900px 260px at 20% 10%, rgba(0,194,255,.14), transparent 70%),
-        radial-gradient(700px 260px at 90% 10%, rgba(122,92,255,.10), transparent 60%),
-        rgba(255,255,255,.03);
-      height: 320px;
-      overflow:hidden;
-      position:relative;
-      box-shadow: 0 18px 55px rgba(0,0,0,.28);
-    }
-
-    .portrait::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.45)),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='540' viewBox='0 0 960 540'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.09'%3E%3Cpath d='M70 120h310v140H70z'/%3E%3Cpath d='M440 120h450v140H440z'/%3E%3Cpath d='M70 300h820v160H70z'/%3E%3Cpath d='M220 120v140'/%3E%3Cpath d='M590 120v140'/%3E%3Cpath d='M70 360h820'/%3E%3Cpath d='M70 410h820'/%3E%3Cpath d='M70 300l150-40 140 40 230-40 220 40'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.10'%3E%3Ccircle cx='70' cy='120' r='6'/%3E%3Ccircle cx='380' cy='260' r='6'/%3E%3Ccircle cx='440' cy='120' r='6'/%3E%3Ccircle cx='890' cy='460' r='6'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: cover;
-      background-position:center;
-      opacity:.95;
-      filter: saturate(1.05);
-    }
-
-    .about-card{
-      border-radius: var(--radius2);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding: 22px;
-      box-shadow: 0 18px 55px rgba(0,0,0,.25);
-      backdrop-filter: blur(12px);
-    }
-
-    .about-card .bullets{
-      margin: 14px 0 0;
-      padding: 0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-    }
-    .about-card .bullets li{
-      display:flex;
-      gap:10px;
-      color:var(--muted);
-      line-height:1.5;
-      font-size:14px;
-    }
-    .dot{
-      width:10px; height:10px;
-      border-radius:999px;
-      margin-top: 5px;
-      background: rgba(0,194,255,.85);
-      box-shadow: 0 0 0 3px rgba(0,194,255,.16);
-      flex: 0 0 auto;
-    }
-
-    /* ==========================
-       Architecture Showcase
-    ========================== */
-    .arch-card{
-      border-radius: var(--radius2);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding: 22px;
-      box-shadow: 0 18px 55px rgba(0,0,0,.25);
-      backdrop-filter: blur(12px);
-    }
-
-    .arch-top{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-
-    .arch-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .diagram{
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
-      overflow:hidden;
-      padding: 16px;
-    }
-
-    /* ==========================
-       Projects
-    ========================== */
-    .projects{
-      display:grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 18px;
     }
 
-    .proj{
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding: 18px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 14px 38px rgba(0,0,0,.22);
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      transition: transform .15s ease, border-color .2s ease, background .2s ease;
-    }
-
-    .proj:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-    }
-
-    .proj h3{
-      margin:0 0 6px;
-      font-size:18px;
-      letter-spacing:-0.01em;
-    }
-
-    .tags{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-
-    .tag{
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      padding: 6px 10px;
-      border-radius: 999px;
-    }
-
-    .proj-links{
-      display:flex;
-      gap:10px;
-      flex:0 0 auto;
-      align-items:center;
-      margin-top: 2px;
-    }
-
-    /* ==========================
-       Skills
-    ========================== */
-    .skills-grid{
+    .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 18px;
     }
 
+    .list{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.55;
+    }
+    .list li{
+      display:flex;
+      gap:10px;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      margin-top: 6px;
+      background: rgba(0,194,255,.85);
+      box-shadow: 0 0 0 3px rgba(0,194,255,.14);
+      flex: 0 0 auto;
+    }
+
+    /* Experience */
+    .exp{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+    .role{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 18px;
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(12px);
+    }
+    .role-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .role-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Skills */
     .skill-card{
       border-radius: 22px;
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       padding: 18px;
+      box-shadow: var(--shadow2);
       backdrop-filter: blur(12px);
-      box-shadow: 0 14px 38px rgba(0,0,0,.22);
     }
+    .skill-list{ margin:0; padding:0; list-style:none; display:grid; gap:8px; color:var(--muted); font-size:14px; line-height:1.45; }
 
-    .skill-card h3{
-      margin:0 0 10px;
-      font-size:16px;
-      letter-spacing:-0.01em;
-    }
-
-    .skill-list{
-      margin:0; padding:0;
-      list-style:none;
-      display:grid;
-      gap:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
-    }
-
-    /* ==========================
-       Contact CTA
-    ========================== */
+    /* CTA */
     .cta{
       border-radius: var(--radius2);
       border:1px solid rgba(255,255,255,.10);
@@ -554,24 +353,21 @@
         radial-gradient(700px 260px at 90% 0%, rgba(122,92,255,.12), transparent 60%),
         rgba(255,255,255,.03);
       padding: 22px;
-      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
       flex-wrap:wrap;
+      margin-top: 18px;
     }
 
-    /* ==========================
-       Footer
-    ========================== */
     footer{
       padding: 30px 0 44px;
       color:var(--muted);
       font-size:14px;
     }
-
     .footer-row{
       display:flex;
       justify-content:space-between;
@@ -582,30 +378,16 @@
       padding-top: 18px;
     }
 
-    .social{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    /* ==========================
-       Responsive
-    ========================== */
-    @media (max-width: 900px){
+    @media (max-width: 950px){
       .hero-grid{ grid-template-columns: 1fr; }
-      .about-grid{ grid-template-columns: 1fr; }
-      .portrait{ height: 280px; }
-      .skills-grid{ grid-template-columns: 1fr; }
       .navlinks{ display:none; }
-      .hamburger{ display:flex; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
     }
 
-    /* ==========================
-       Reduce motion (accessibility)
-    ========================== */
     @media (prefers-reduced-motion: reduce){
-      .btn, .proj{ transition:none; }
-      .proj:hover, .btn:hover{ transform:none; }
+      .btn{ transition:none; }
+      .btn:hover{ transform:none; }
     }
   </style>
 </head>
@@ -621,20 +403,19 @@
           <span>Mihir Bommisetty</span>
         </a>
 
-        <div class="navlinks" role="navigation" aria-label="Section links">
-          <a href="#about">About</a>
-          <a href="#architecture">Architecture</a>
-          <a href="#projects">Projects</a>
+        <div class="navlinks" aria-label="Section links">
+          <a href="#summary">Summary</a>
           <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
           <a href="#contact">Contact</a>
         </div>
 
-        <div class="nav-cta">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <!-- Replace these with your real URLs -->
           <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn primary" href="#contact">Let’s talk</a>
-          <button class="hamburger" type="button" aria-label="Menu (static demo)">
-            <span></span>
-          </button>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn primary" href="#contact">Hire me</a>
         </div>
       </nav>
     </div>
@@ -644,323 +425,279 @@
   <main id="top" class="hero section">
     <div class="container">
       <div class="hero-grid">
-        <section class="hero-card" aria-label="Intro">
+        <section class="card hero-card" aria-label="Intro">
           <div class="hero-top">
-            <span class="pill">Security-first • Systems • Architecture</span>
-            <span class="pill">Open to backend / platform roles</span>
+            <span class="pill">Sr. Full Stack Developer</span>
+            <span class="pill">.NET • Angular • Golang • SQL Server</span>
+            <span class="pill">Microservices • CI/CD • WCAG</span>
           </div>
 
           <h1 class="h1" style="position:relative; z-index:1;">
-            Security-Focused Systems Engineer<br/>
-            building scalable, zero-trust infrastructure.
+            Building secure, high-performance web platforms<br/>
+            with strong backend architecture.
           </h1>
 
-          <p class="p" style="position:relative; z-index:1; max-width: 62ch;">
-            I design and ship systems where correctness, privacy, and reliability matter —
-            from cryptography-driven workflows to production-grade backend services.
+          <p class="p" style="position:relative; z-index:1; max-width: 70ch;">
+            7+ years across enterprise web applications and services—covering SDLC end-to-end,
+            API-driven systems, microservices modernization, payment workflows (Stripe/PayPal),
+            and accessibility-first delivery.
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="#architecture">See Architecture</a>
-            <a class="btn" href="#" title="Replace with your resume link">Download Resume</a>
+            <a class="btn primary" href="#experience">View Experience</a>
+            <a class="btn" href="#skills">Technical Skills</a>
+            <!-- Replace with a PDF link once you upload -->
+            <a class="btn" href="#" title="Replace with your resume PDF link">Download Resume</a>
           </div>
 
           <div class="hero-meta">
-            <span class="pill">📍 USA (Remote/Hybrid)</span>
-            <span class="pill">🛡️ Security + Distributed Systems</span>
-            <span class="pill">⚙️ Node • .NET • Postgres • CI/CD</span>
+            <span class="pill">📞 +1 (551) 349-4114</span>
+            <span class="pill">✉️ mihirbommisettys@gmail.com</span>
+            <span class="pill">✅ Open to Full-Stack / Backend / Platform roles</span>
           </div>
 
           <div class="divider"></div>
+
           <p class="p" style="margin-top:14px; position:relative; z-index:1;">
-            Currently building <strong>QuantumMail</strong> — a client-side envelope encryption platform designed for
-            “harvest now, decrypt later” threat resilience.
+            Recent work: Modernizing legacy government systems into an <strong>Angular-based microservices architecture</strong>,
+            shipping <strong>Golang services</strong> with structured logging, request validation, and auth hooks.
           </p>
         </section>
 
-        <aside class="hero-side" aria-label="Quick summary">
-          <p class="mini-title">What I’m best at</p>
+        <aside class="card" aria-label="Highlights">
+          <p class="mini-title">What I deliver</p>
           <p class="mini">
-            Turning complex constraints (security, scale, compliance) into clean, maintainable systems —
-            with clear docs, diagrams, and pragmatic trade-offs.
+            Clean architecture, resilient APIs, and production-ready implementations — with a strong focus on
+            security, performance, and accessibility compliance.
           </p>
 
-          <div class="stats" aria-label="Highlights">
+          <div class="stats" aria-label="Highlights stats">
             <div class="stat">
-              <p class="k">Focus</p>
-              <p class="v">Security + Platform</p>
+              <p class="k">Experience</p>
+              <p class="v">7+ Years</p>
             </div>
             <div class="stat">
-              <p class="k">Strength</p>
-              <p class="v">Architecture clarity</p>
+              <p class="k">Core Stack</p>
+              <p class="v">.NET + Go</p>
             </div>
             <div class="stat">
-              <p class="k">Build style</p>
-              <p class="v">Docs + diagrams</p>
+              <p class="k">Front End</p>
+              <p class="v">Angular</p>
             </div>
             <div class="stat">
-              <p class="k">Stack</p>
-              <p class="v">Node / .NET / PG</p>
+              <p class="k">Delivery</p>
+              <p class="v">CI/CD</p>
             </div>
           </div>
 
           <div class="divider"></div>
 
-          <p class="mini-title" style="margin-top:16px;">Fast links</p>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="btn" href="#" title="Replace with an email link">Email</a>
-          </div>
+          <p class="mini-title" style="margin-top:16px;">Signature strengths</p>
+          <ul class="list" aria-label="Signature strengths list">
+            <li><span class="dot" aria-hidden="true"></span><span>REST APIs, WCF SOAP/REST, secure token-based auth</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Payments: webhooks, idempotency, reconciliation & audit logs</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>ORM + data: EF/EF Core, Dapper, ADO.NET, SQL optimization</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Accessibility: WCAG compliance using WAVE + JAWS</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Containers: Podman, OCI images, rootless deployments</span></li>
+          </ul>
         </aside>
       </div>
     </div>
   </main>
 
-  <!-- ABOUT -->
-  <section id="about" class="section" aria-label="About">
+  <!-- SUMMARY -->
+  <section id="summary" class="section" aria-label="Professional summary">
     <div class="container">
-      <p class="kicker">About</p>
-      <div class="about-grid">
-        <div class="portrait" aria-hidden="true"></div>
-
-        <div class="about-card">
-          <h2 class="h2">I build systems people can trust.</h2>
-          <p class="p">
-            I’m a full-stack engineer with a backend mindset — I care about security boundaries, clean data models,
-            predictable APIs, and resilient deployment. I like projects where the “hard part” is correctness and scale,
-            not just UI.
-          </p>
-
-          <ul class="bullets" aria-label="Highlights">
-            <li><span class="dot" aria-hidden="true"></span><span>Security-first architecture (client-side crypto, zero-trust workflows)</span></li>
-            <li><span class="dot" aria-hidden="true"></span><span>Distributed & backend systems (APIs, auth, storage, performance)</span></li>
-            <li><span class="dot" aria-hidden="true"></span><span>Developer experience (docs, tooling, reliable CI/CD pipelines)</span></li>
-            <li><span class="dot" aria-hidden="true"></span><span>Compliance-aware mindset (privacy, least-privilege, auditability)</span></li>
-          </ul>
-
-          <div class="divider"></div>
-
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-            <span class="pill">Interested in: Platform, Security, Dev Tools</span>
-            <span class="pill">Avoid: “feature churn” without ownership</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ARCHITECTURE -->
-  <section id="architecture" class="section" aria-label="Architecture">
-    <div class="container">
-      <p class="kicker">Architecture</p>
-      <div class="arch-card">
-        <div class="arch-top">
-          <div>
-            <h2 class="h2">QuantumMail — Envelope Encryption Flow</h2>
-            <p class="p">A minimal, readable diagram that explains the system at a glance.</p>
-          </div>
-          <div class="arch-actions">
-            <a class="btn" href="#" title="Replace with ARCHITECTURE.md link">ARCHITECTURE.md</a>
-            <a class="btn" href="#" title="Replace with THREAT_MODEL.md link">THREAT_MODEL.md</a>
-          </div>
-        </div>
-
-        <div class="diagram" role="img" aria-label="Architecture diagram">
-          <!-- Inline SVG diagram -->
-          <svg width="100%" viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="rgba(0,194,255,.55)"/>
-                <stop offset="1" stop-color="rgba(122,92,255,.35)"/>
-              </linearGradient>
-              <filter id="blur" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="12" />
-              </filter>
-            </defs>
-
-            <!-- glow -->
-            <circle cx="210" cy="110" r="72" fill="url(#g)" opacity=".20" filter="url(#blur)"/>
-            <circle cx="760" cy="250" r="72" fill="url(#g)" opacity=".14" filter="url(#blur)"/>
-
-            <!-- boxes -->
-            <g fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.12)" stroke-width="1.2">
-              <rect x="70" y="70" width="280" height="120" rx="18"/>
-              <rect x="380" y="50" width="260" height="160" rx="18"/>
-              <rect x="690" y="70" width="220" height="120" rx="18"/>
-              <rect x="380" y="240" width="530" height="90" rx="18"/>
-            </g>
-
-            <!-- labels -->
-            <g fill="rgba(230,237,243,.92)" font-family="ui-sans-serif, system-ui" font-size="16" font-weight="650">
-              <text x="102" y="105">Browser Client</text>
-              <text x="412" y="85">Crypto Layer (Client-side)</text>
-              <text x="722" y="105">API Server</text>
-              <text x="412" y="270">Storage + Key Registry</text>
-            </g>
-
-            <g fill="rgba(139,148,158,.95)" font-family="ui-sans-serif, system-ui" font-size="13">
-              <text x="102" y="132">Compose → Encrypt → Share link</text>
-              <text x="412" y="112">AES-GCM encrypt payload</text>
-              <text x="412" y="134">RSA-OAEP wrap DEK per recipient</text>
-              <text x="412" y="156">Upload ciphertext + wrapped keys</text>
-              <text x="722" y="132">Stores ciphertext only</text>
-
-              <text x="412" y="296">Neon/Postgres: ciphertext, wrapped DEKs, metadata</text>
-              <text x="412" y="316">Org Store: public keys, roles (admin/superAdmin), policy</text>
-            </g>
-
-            <!-- connectors -->
-            <g stroke="rgba(0,194,255,.60)" stroke-width="2.2" fill="none">
-              <path d="M350 130 C 380 130, 360 130, 380 130" />
-              <path d="M640 130 C 670 130, 660 130, 690 130" />
-              <path d="M510 210 L 510 240" />
-            </g>
-
-            <!-- arrows -->
-            <g fill="rgba(0,194,255,.75)">
-              <polygon points="372,124 382,130 372,136"/>
-              <polygon points="682,124 692,130 682,136"/>
-              <polygon points="504,232 510,242 516,232"/>
-            </g>
-
-            <!-- small nodes -->
-            <g fill="rgba(255,255,255,.14)">
-              <circle cx="70" cy="70" r="6"/>
-              <circle cx="910" cy="70" r="6"/>
-              <circle cx="910" cy="330" r="6"/>
-            </g>
-          </svg>
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="p" style="margin-top:14px;">
-          Design goal: keep secrets client-side. Backend acts as transport + policy layer — storing only ciphertext and
-          wrapped data keys, never plaintext.
+      <p class="kicker">Professional Summary</p>
+      <div class="card">
+        <h2 class="h2">Enterprise engineering with a modern platform mindset</h2>
+        <p class="p">
+          Heavy involvement across SDLC (planning → delivery) building web-based, client-server, 3-tier and n-tier applications.
+          Strong Microsoft stack background (ASP.NET, C#, Web Forms/MVC/Web API/WCF) plus modern modernization work using Angular and Golang services.
         </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="section" aria-label="Projects">
-    <div class="container">
-      <p class="kicker">Featured Projects</p>
-      <h2 class="h2">High-signal, architecture-driven work</h2>
-      <p class="p">Three projects that demonstrate security mindset, system design, and production readiness.</p>
-
-      <div class="projects">
-        <article class="proj">
-          <div>
-            <h3>QuantumMail</h3>
-            <p class="p">Client-side envelope encryption for secure, link-based message delivery with org roles and key registry.</p>
-            <div class="tags" aria-label="Tech stack tags">
-              <span class="tag">AES-GCM</span>
-              <span class="tag">RSA-OAEP</span>
-              <span class="tag">Chrome Extension</span>
-              <span class="tag">Node/Express</span>
-              <span class="tag">Neon Postgres</span>
-              <span class="tag">Render</span>
-            </div>
+        <div class="grid-2">
+          <div class="skill-card">
+            <h3 class="h3">What I’m looking for</h3>
+            <ul class="skill-list">
+              <li>Platform / Backend / Full-Stack roles with real ownership</li>
+              <li>Systems that prioritize reliability, security, and maintainability</li>
+              <li>Teams with strong engineering practices (reviews, tests, CI/CD)</li>
+            </ul>
           </div>
-          <div class="proj-links">
-            <a class="btn" href="#" title="Replace with live demo link">Live</a>
-            <a class="btn" href="#" title="Replace with GitHub repo link">GitHub</a>
+          <div class="skill-card">
+            <h3 class="h3">What I avoid</h3>
+            <ul class="skill-list">
+              <li>Pure feature churn with no architectural responsibility</li>
+              <li>Environments where quality/testing/security is an afterthought</li>
+              <li>Unclear expectations and unstable delivery processes</li>
+            </ul>
           </div>
-        </article>
-
-        <article class="proj">
-          <div>
-            <h3>Secure Merge Gate (Concept Repo)</h3>
-            <p class="p">A GitHub App idea that scores PR risk using policy + dependency signals to prevent unsafe merges.</p>
-            <div class="tags">
-              <span class="tag">Supply Chain</span>
-              <span class="tag">Policy-as-Code</span>
-              <span class="tag">Risk Scoring</span>
-              <span class="tag">CI/CD</span>
-            </div>
-          </div>
-          <div class="proj-links">
-            <a class="btn" href="#" title="Replace with docs link">Docs</a>
-            <a class="btn" href="#" title="Replace with GitHub repo link">GitHub</a>
-          </div>
-        </article>
-
-        <article class="proj">
-          <div>
-            <h3>Systems Design Notes</h3>
-            <p class="p">Architecture writeups: threat models, boundary design, storage choices, and trade-off analysis.</p>
-            <div class="tags">
-              <span class="tag">Architecture</span>
-              <span class="tag">Threat Modeling</span>
-              <span class="tag">Performance</span>
-              <span class="tag">Reliability</span>
-            </div>
-          </div>
-          <div class="proj-links">
-            <a class="btn" href="#" title="Replace with GitHub repo link">GitHub</a>
-          </div>
-        </article>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="section" aria-label="Skills">
+  <section id="skills" class="section" aria-label="Technical skills">
     <div class="container">
-      <p class="kicker">Skills</p>
-      <h2 class="h2">What I bring to a platform team</h2>
-      <p class="p">No fluff — just the areas I consistently build and ship in.</p>
+      <p class="kicker">Technical Skills</p>
+      <h2 class="h2">Stack I use to ship production systems</h2>
+      <p class="p">Focused, practical, and aligned to real enterprise delivery.</p>
 
-      <div class="skills-grid">
+      <div class="grid-3">
         <div class="skill-card">
-          <h3>Systems</h3>
+          <h3 class="h3">Backend & Services</h3>
           <ul class="skill-list">
-            <li>Distributed architecture & service boundaries</li>
-            <li>API design, data modeling, migrations</li>
-            <li>Performance profiling & pragmatic optimization</li>
-            <li>Observability: logs, metrics, tracing (where applicable)</li>
+            <li>.NET (Core/Framework), ASP.NET Web Forms, MVC</li>
+            <li>Web API (REST), WCF (SOAP/REST), IIS</li>
+            <li>Golang microservices: middleware, validation, logging</li>
+            <li>Auth: token-based access control</li>
           </ul>
         </div>
 
         <div class="skill-card">
-          <h3>Security</h3>
+          <h3 class="h3">Frontend</h3>
           <ul class="skill-list">
-            <li>Envelope encryption (AES-GCM + RSA key wrapping)</li>
-            <li>Zero-trust concepts, least-privilege access</li>
-            <li>Threat modeling, secure defaults, key lifecycle</li>
-            <li>Privacy-first storage (ciphertext-only backends)</li>
+            <li>Angular (8/9+), TypeScript</li>
+            <li>HTML5, CSS, JavaScript, jQuery, AJAX</li>
+            <li>Responsive UI with Bootstrap</li>
+            <li>Cross-browser + DOM debugging</li>
           </ul>
         </div>
 
         <div class="skill-card">
-          <h3>Shipping</h3>
+          <h3 class="h3">Data, DevOps & Quality</h3>
           <ul class="skill-list">
-            <li>CI/CD basics, release hygiene</li>
-            <li>Production deploys (Render/Vercel-like workflows)</li>
-            <li>Postgres/Neon, caching patterns</li>
-            <li>Docs, diagrams, and maintainable repos</li>
+            <li>SQL Server (T-SQL, views, indexing, optimization)</li>
+            <li>EF/EF Core, Dapper, ADO.NET</li>
+            <li>Azure DevOps CI/CD (YAML), Git</li>
+            <li>Unit testing: NUnit, xUnit, MSTest</li>
+            <li>Containers: Podman, OCI images</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section" aria-label="Contact">
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section" aria-label="Professional experience">
     <div class="container">
-      <p class="kicker">Contact</p>
-      <div class="cta">
+      <p class="kicker">Professional Experience</p>
+      <h2 class="h2">Roles & impact</h2>
+      <p class="p">A few high-signal highlights from recent work.</p>
+
+      <div class="exp">
+        <article class="role">
+          <div class="role-top">
+            <div>
+              <h3 class="h3">Application Developer III — Fish & Boat Commission of Pennsylvania</h3>
+              <div class="role-meta">
+                <span class="pill">SnaplogicGS</span>
+                <span class="pill">Dec 2025 – Present</span>
+                <span class="pill">ASP.NET • C# • Go • SQL Server • Angular</span>
+              </div>
+            </div>
+          </div>
+          <ul class="list">
+            <li><span class="dot" aria-hidden="true"></span><span>Modernized legacy systems into an Angular-based microservices architecture with API-driven data access.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Built production Golang microservices (REST APIs, middleware, validation, structured logging, auth hooks).</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Integrated payments (Stripe/PayPal/cards) with webhooks, idempotency, retries, reconciliation, and audit logging.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Delivered WCAG-compliant UI using WAVE + JAWS; authored documentation and standards.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Containerized services with Podman and OCI images to support environment-specific deployments.</span></li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-top">
+            <div>
+              <h3 class="h3">Application Developer III — Fish & Boat Commission of Pennsylvania</h3>
+              <div class="role-meta">
+                <span class="pill">KREPS Consulting</span>
+                <span class="pill">Apr 2024 – Present</span>
+                <span class="pill">ASP.NET • C# • Go • SQL Server • Angular</span>
+              </div>
+            </div>
+          </div>
+          <p class="p">
+            Similar scope: enterprise web apps + modernization + production services and accessibility delivery.
+          </p>
+        </article>
+
+        <article class="role">
+          <div class="role-top">
+            <div>
+              <h3 class="h3">Software Developer — Pennsylvania Child Support Enforcement System (PACSES)</h3>
+              <div class="role-meta">
+                <span class="pill">Jan 2023 – Dec 2023</span>
+                <span class="pill">.NET • C# • VB.NET • SQL • Azure DevOps</span>
+              </div>
+            </div>
+          </div>
+          <ul class="list">
+            <li><span class="dot" aria-hidden="true"></span><span>Enhanced legacy apps using ASP.NET/C#; integrated VB.NET with SQL via ADO.NET.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Built Hangfire jobs for complex background processing.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Created CI/CD pipelines in Azure DevOps and improved database performance with query optimization.</span></li>
+          </ul>
+        </article>
+
+        <article class="role">
+          <div class="role-top">
+            <div>
+              <h3 class="h3">Software Engineer / Development Engineer — Aptean (Made2Manage)</h3>
+              <div class="role-meta">
+                <span class="pill">Aug 2020 – Aug 2022</span>
+                <span class="pill">Jan 2017 – Aug 2020</span>
+                <span class="pill">ASP.NET • SQL • WCF • AWS • Testing</span>
+              </div>
+            </div>
+          </div>
+          <ul class="list">
+            <li><span class="dot" aria-hidden="true"></span><span>Built web forms, validations, stored procedures/triggers, and deployed to IIS/test/prod.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Hosted services and apps on AWS (EC2, IIS) and tested using Postman/Fiddler/SoapUI.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span>Implemented unit tests and improved UI using reusable controls and optimized state management.</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTS -->
+  <section id="education" class="section" aria-label="Education and certifications">
+    <div class="container">
+      <p class="kicker">Education & Certifications</p>
+      <div class="grid-2">
+        <div class="skill-card">
+          <h2 class="h2">Education</h2>
+          <ul class="skill-list">
+            <li><strong>MSc</strong> — Stevens Institute of Technology</li>
+            <li><strong>BTech</strong> — Koneru Lakshmaiah Education Foundation</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h2 class="h2">Certifications</h2>
+          <ul class="skill-list">
+            <li>ServiceNow — Certified System Administrator (CSA)</li>
+            <li>RPA — Robotic Process Automation (RE Framework)</li>
+            <li>Wipro — Certified Java Professional</li>
+            <li>Oracle Academy — DBMS, Java</li>
+            <li>IRJET — Research publication recognition</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta" id="contact">
         <div>
-          <h2 class="h2" style="margin:0 0 8px;">Want to build something high-signal together?</h2>
+          <h2 class="h2" style="margin:0 0 8px;">Let’s build something reliable and high-impact.</h2>
           <p class="p" style="max-width: 70ch;">
-            I’m looking for platform/security roles where I can own architecture, ship production systems, and raise the bar on reliability.
+            If you’re hiring for full-stack/backend roles where security, performance, and delivery quality matter,
+            I’d love to connect.
           </p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn primary" href="mailto:your.email@example.com">Email me</a>
+          <a class="btn primary" href="mailto:mihirbommisettys@gmail.com">Email</a>
+          <!-- Replace with your real GitHub/LinkedIn links -->
           <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
         </div>
@@ -972,7 +709,7 @@
     <div class="container">
       <div class="footer-row">
         <div>© <span id="year"></span> Mihir Bommisetty • Built with HTML + CSS</div>
-        <div class="social">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
           <a class="btn" href="#top">Back to top</a>
         </div>
       </div>
@@ -980,7 +717,6 @@
   </footer>
 
   <script>
-    // tiny enhancement (safe + optional)
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
