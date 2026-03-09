@@ -75,6 +75,22 @@ Device Authentication
 Client Decryption
 `,
 
+encrypt: () => `
+Simulating Encryption Flow
+
+Sender Device
+    ↓
+AES Encryption
+    ↓
+RSA Key Wrapping
+    ↓
+Secure Storage
+    ↓
+Device Verification
+    ↓
+Client Decryption
+`,
+   
 system: () => `
 Developer Experience     ███████████ 7+ Years
 Backend Engineering      ███████████ Expert
@@ -91,6 +107,10 @@ Email
 mihirbommisettys@gmail.com
 `,
 
+github: async () => {
+return await loadGithub();
+},
+   
 clear: () => {
 output.innerHTML="";
 return "";
