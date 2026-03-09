@@ -1,35 +1,5 @@
-const input = document.getElementById("commandInput");
-const output = document.getElementById("output");
-
-function print(text){
-
-const div = document.createElement("div");
-
-div.className="output-line";
-
-div.innerHTML=text;
-
-output.appendChild(div);
-
-}
-
-function runCommand(cmd){
-
-const command = cmd.trim().toLowerCase();
-
-if(commands[command]){
-
-print(commands[command]());
-
-}
-
-else{
-
-print("Command not found. Type 'help'");
-
-}
-
-}
+let history = [];
+let historyIndex = 0;
 
 input.addEventListener("keydown",function(e){
 
@@ -37,12 +7,29 @@ if(e.key==="Enter"){
 
 const value=input.value;
 
+history.push(value);
+historyIndex=history.length;
+
 print(`<span class="prompt">mihir@system:~$</span> ${value}`);
 
 runCommand(value);
 
 input.value="";
-
 }
 
+if(e.key==="ArrowUp"){
+
+historyIndex--;
+
+if(historyIndex>=0)
+input.value=history[historyIndex];
+}
+
+if(e.key==="ArrowDown"){
+
+historyIndex++;
+
+if(historyIndex<history.length)
+input.value=history[historyIndex];
+}
 });
