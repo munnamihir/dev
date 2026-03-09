@@ -2,26 +2,41 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Mihir Bommisetty | Terminal Portfolio</title>
+<title>MihirOS Secure Console</title>
+
 <link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
 </head>
 
 <body>
+
+<div id="bootScreen">
+<div id="bootText"></div>
+</div>
+
+<div id="terminalContainer" class="hidden">
+
+<div id="particles-js"></div>
 
 <div id="terminal">
 
 <div id="output"></div>
 
 <div class="input-line">
-<span class="prompt">mihir@portfolio:~$</span>
-<input id="commandInput" autofocus />
+<span class="prompt">mihir@system:~$</span>
+<input id="commandInput" autofocus>
 </div>
 
 </div>
 
-<script src="data.js"></script>
+</div>
+
+<script src="boot.js"></script>
 <script src="commands.js"></script>
 <script src="terminal.js"></script>
+<script src="particles.js"></script>
 
 </body>
 </html>
