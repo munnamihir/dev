@@ -1,0 +1,32 @@
+body {
+  background: #0a0a0a;
+  color: #00ff9c;
+  font-family: "JetBrains Mono", monospace;
+  margin: 0;
+}
+
+#terminal {
+  padding: 20px;
+}
+
+.prompt {
+  margin-right: 10px;
+}
+
+.input-line {
+  display: flex;
+}
+
+input {
+  background: transparent;
+  border: none;
+  color: #00ff9c;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+}
+
+.output-line {
+  margin-bottom: 10px;
+}
