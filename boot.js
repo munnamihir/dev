@@ -15,6 +15,12 @@ const bootLines = [
 
 const bootText = document.getElementById("bootText");
 
+const audio = new Audio(
+"https://assets.mixkit.co/sfx/preview/mixkit-interface-system-boot-2577.mp3"
+);
+
+audio.play();
+
 let index = 0;
 
 function showBootLine(){
