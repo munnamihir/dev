@@ -1,22 +1,21 @@
 const commands = {
 
 help: () => `
-Available commands
+Available Commands
 
 about
 experience
-projects
 skills
+projects
 quantummail
-resume
+system
 github
 contact
 clear
 `,
 
 about: () => `
-Hi I'm Mihir Bommisetty
-
+Mihir Bommisetty
 Senior Full Stack Developer
 
 Specializing in:
@@ -24,10 +23,7 @@ Specializing in:
 .NET
 Golang
 Angular
-Cloud Architecture
-Secure Systems
-
-Currently building QuantumMail
+Secure System Design
 `,
 
 experience: () => `
@@ -49,13 +45,10 @@ Python
 Frameworks
 .NET
 Angular
-Node
 
-Infrastructure
+Cloud
 Azure
 AWS
-Podman
-CI/CD
 `,
 
 projects: () => `
@@ -69,42 +62,38 @@ Projects
 quantummail: () => `
 QuantumMail Architecture
 
-Device registers public key
-Message encrypted using AES-GCM
-AES key wrapped with RSA
-Encrypted payload stored server side
-Recipient device decrypts message
-
-Security
-
-End-to-end encryption
-Device-bound access
-Envelope encryption
+Sender Device
+   ↓
+AES Encryption
+   ↓
+RSA Wrapped Key
+   ↓
+Encrypted Storage
+   ↓
+Device Authentication
+   ↓
+Client Decryption
 `,
 
-resume: () => `
-Download Resume
-
-assets/Mihir_Bommisetty_Resume.pdf
+system: () => `
+Developer Experience     ███████████ 7+ Years
+Backend Engineering      ███████████ Expert
+Architecture             ██████████ Advanced
+Security                 ██████████ Strong
 `,
 
 github: () => `
-GitHub
-
-https://github.com/munnamihir
+github.com/munnamihir
 `,
 
 contact: () => `
 Email
 mihirbommisettys@gmail.com
-
-Phone
-+1 551-349-4114
 `,
 
 clear: () => {
-  output.innerHTML = ""
-  return ""
+output.innerHTML="";
+return "";
 }
 
-}
+};
