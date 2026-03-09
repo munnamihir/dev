@@ -32,4 +32,18 @@ historyIndex++;
 if(historyIndex<history.length)
 input.value=history[historyIndex];
 }
+
+  if(e.key==="Tab"){
+
+  e.preventDefault();
+  
+  const value=input.value.toLowerCase();
+  
+  const match = Object.keys(commands)
+  .find(cmd=>cmd.startsWith(value));
+  
+  if(match)
+  input.value = match;
+  
+  }
 });
