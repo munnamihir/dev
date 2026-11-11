@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "RFP.Web/COOP/PostStocking.aspx",
+      "content": "<%@ Page Language=\"C#\" %>\n<asp:GridView ID=\"trips\" runat=\"server\" />"
+    },
+    {
+      "path": "RFP.Web/COOP/PostStocking.aspx.cs",
+      "content": "public partial class PostStocking { protected void Page_Load() { if (!User.Identity.IsAuthenticated) return; } }"
+    },
+    {
+      "path": "src/app/modules/coop/trips.service.ts",
+      "content": "@Injectable() export class TripsService { load(http: HttpClient) { return http.get('/api/coop/trips'); } }"
+    },
+    {
+      "path": "COOP.API/Controllers/TripsController.cs",
+      "content": "[ApiController]\n[Authorize(Policy = \"Coop.Read\")]\n[Route(\"api/coop\")]\npublic class TripsController : ControllerBase {\n [HttpGet(\"trips\")] public IActionResult List() => Ok();\n [Authorize(Policy = \"Coop.Write\")]\n [HttpPost(\"trips\")] public IActionResult Save() => Ok();\n}"
+    },
+    {
+      "path": "src/app/modules/common/regions.service.ts",
+      "content": "@Injectable() export class RegionsService { load(http: HttpClient) { return http.get('/api/common/lookups'); } }"
+    },
+    {
+      "path": "Common.API/Controllers/LookupsController.cs",
+      "content": "[ApiController]\n[Authorize(Policy = \"Common.Read\")]\n[Route(\"api/common\")]\npublic class LookupsController : ControllerBase { [HttpGet(\"lookups\")] public IActionResult List() => Ok(); }"
+    },
+    {
+      "path": "Common.API/Repositories/LookupRepository.cs",
+      "content": "class LookupRepository { const string Query = \"SELECT RegionName FROM dbo.Region\"; }"
+    }
+  ]
+}
