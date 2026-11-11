@@ -37,11 +37,12 @@ async function route(req,res) {
   const pathname = url.pathname;
   if (pathname.startsWith('/api/')) {
     try {
-      if (pathname === '/api/health' && req.method === 'GET') return send(res,200,{ok:true,version:'0.1.0',engine:'deterministic'});
+      if (pathname === '/api/health' && req.method === 'GET') return send(res,200,{ok:true,version:'0.2.0',engine:'deterministic'});
       if (pathname === '/api/sample' && req.method === 'GET') {
         const aspx = await readFile(path.join(root, 'samples/CustomerRegistration.aspx'), 'utf8');
         const codeBehind = await readFile(path.join(root, 'samples/CustomerRegistration.aspx.cs'), 'utf8');
-        return send(res, 200, { name: 'CustomerRegistration', aspx, codeBehind });
+        const architecture = JSON.parse(await readFile(path.join(root, 'samples/architecture.json'), 'utf8'));
+        return send(res, 200, {name:'CustomerRegistration',aspx,codeBehind,architecture});
       }
       if (pathname === '/api/projects' && req.method === 'GET') return send(res,200,{projects: await listProjects()});
       if (pathname === '/api/projects' && req.method === 'POST') {
@@ -59,8 +60,10 @@ async function route(req,res) {
         if (action === 'analyze' && req.method === 'POST') {
           const data = await bodyJson(req);
           if (typeof data.aspx !== 'string' || data.aspx.length > 1000000 || typeof data.codeBehind !== 'string' || data.codeBehind.length > 1000000) return send(res,400,{error:'ASPX and codeBehind must be text under 1,000,000 characters each'});
+          const result = analyze(data.aspx, data.codeBehind, project.name, data.architecture ?? null);
           project.aspx = data.aspx; project.codeBehind = data.codeBehind;
-          project.result = analyze(data.aspx, data.codeBehind, project.name);
+          project.architecture = data.architecture ?? null;
+          project.result = result;
           project.updatedAt = new Date().toISOString();
           await saveProject(project);
           return send(res,200,{project});

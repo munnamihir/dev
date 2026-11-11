@@ -45,18 +45,19 @@ async function openProject(id) {
   $('studio-project-meta').textContent = `Created ${d(state.project.createdAt)} · ${state.project.result ? 'Analysis available' : 'Not analyzed yet'}`;
   $('aspx-input').value = state.project.aspx || '';
   $('codebehind-input').value = state.project.codeBehind || '';
+  $('architecture-input').value = state.project.architecture ? JSON.stringify(state.project.architecture,null,2) : '';
   updateLines(); renderStudioResults(); show('studio');
 }
 async function trySample() {
   try {
     const sample = await api('/api/sample');
     const p = await createProject(sample.name);
-    $('aspx-input').value = sample.aspx; $('codebehind-input').value = sample.codeBehind; updateLines();
+    $('aspx-input').value = sample.aspx; $('codebehind-input').value = sample.codeBehind; $('architecture-input').value = JSON.stringify(sample.architecture,null,2); updateLines();
     notice('Synthetic sample loaded. Click Analyze & generate.');
   } catch(e) { notice(e.message, true); }
 }
 async function importSample() {
-  try { const sample = await api('/api/sample'); $('aspx-input').value = sample.aspx; $('codebehind-input').value = sample.codeBehind; updateLines(); notice('Synthetic example imported.'); }
+  try { const sample = await api('/api/sample'); $('aspx-input').value = sample.aspx; $('codebehind-input').value = sample.codeBehind; $('architecture-input').value = JSON.stringify(sample.architecture,null,2); updateLines(); notice('Synthetic example imported.'); }
   catch (e) { notice(e.message, true); }
 }
 function updateLines() { $('aspx-lines').textContent = `${$('aspx-input').value.split('\n').length} lines`; $('cs-lines').textContent = `${$('codebehind-input').value.split('\n').length} lines`; }
@@ -64,7 +65,10 @@ async function analyzeProject() {
   if (!state.project) return notice('Create or open a project first.', true);
   const button = $('run-analysis'); button.disabled = true; button.textContent = 'Analyzing…';
   try {
-    const { project } = await api(`/api/projects/${state.project.id}/analyze`, {method:'POST',body:JSON.stringify({aspx:$('aspx-input').value,codeBehind:$('codebehind-input').value})});
+    const text = $('architecture-input').value.trim();
+    let architecture = null;
+    if (text) {try {architecture=JSON.parse(text);}catch{throw new Error('Architecture must be valid JSON.');}}
+    const { project } = await api(`/api/projects/${state.project.id}/analyze`, {method:'POST',body:JSON.stringify({aspx:$('aspx-input').value,codeBehind:$('codebehind-input').value,architecture})});
     state.project = project; renderStudioResults(); await loadProjects(); notice('Analysis complete — review generated artifacts and findings.');
   } catch (e) { notice(e.message, true); }
   finally { button.disabled = false; button.innerHTML = 'Analyze &amp; generate <span aria-hidden="true">↗</span>'; }
@@ -83,6 +87,11 @@ function renderReport() {
   if (!r) return setEmpty(root, 'No report generated yet', 'Import a legacy ASPX screen and run an analysis to generate the engineering report.');
   const stat = r.stats;
   root.innerHTML = `<div class="report-meta card"><div><div class="overline">SCREEN UNDER REVIEW</div><h2>${esc(state.project.name)}</h2><p>Generated ${esc(d(state.project.updatedAt))} · Rule-based inventory</p></div><span class="review-pill">⚠ REVIEW REQUIRED</span></div><div class="metric-grid report-metrics"><div class="metric"><div class="metric-label">Controls mapped</div><div class="metric-number">${stat.totalControls}</div></div><div class="metric"><div class="metric-label">Form inputs</div><div class="metric-number">${stat.fields}</div></div><div class="metric"><div class="metric-label">Validators</div><div class="metric-number">${stat.validators}</div></div><div class="metric"><div class="metric-label">Identified methods</div><div class="metric-number">${stat.eventHandlers}</div></div></div><div class="report-columns"><div class="card report-section"><div class="overline">EVIDENCE / 01</div><h3>Review findings <span class="count">${r.findings.length}</span></h3><div class="finding-list">${r.findings.map(f=>`<div class="finding"><span class="severity ${esc(f.severity)}">${esc(f.severity)}</span><div><strong>${esc(f.title)}</strong><p>${esc(f.detail)}</p></div></div>`).join('')}</div></div><div class="card report-section"><div class="overline">EVIDENCE / 02</div><h3>Control inventory <span class="count">${r.controlInventory.length}</span></h3><div class="inventory">${r.controlInventory.map(c=>`<div><code>${esc(c.id)}</code><span>${esc(c.type)}</span><b class="${c.supported ? 'state-supported' : 'state-review'}">${c.supported ? 'Mapped' : 'Review'}</b></div>`).join('')}</div></div></div><div class="card report-section checklist"><div class="overline">ENGINEERING / GO-NO GO</div><h3>Review checklist</h3><p>Complete these independently before treating a migration as production-ready.</p>${r.checklist.map(c=>`<label><input type="checkbox" /> <span>${esc(c)}</span></label>`).join('')}</div>`;
+  if (r.apiArchitecture) {
+    const a = r.apiArchitecture;
+    const rows = a.matrix.map(e=>`<tr><td>${esc(e.module)}${e.kind==='common'?' · Common':''}</td><td>${esc(e.method)}</td><td><code>${esc(e.path)}</code></td><td><code>${esc(e.permission)}</code></td><td>${esc(e.sourceSchema||'—')}</td></tr>`).join('');
+    root.innerHTML += `<div class="card report-section"><div class="overline">ARCHITECTURE</div><h3>Module and Common API policy matrix</h3><p>${a.modules} APIs · ${a.endpoints} endpoints</p><div class="architecture-table-wrap"><table><thead><tr><th>Module</th><th>Verb</th><th>Route</th><th>Permission</th><th>Schema</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+  }
 }
 function renderFiles() {
   const root = $('files-body'), files = state.project?.result?.files;
@@ -105,6 +114,7 @@ function init() {
   $('project-form').addEventListener('submit',async e=>{e.preventDefault();const name=$('project-name').value.trim(); if(!name)return; $('project-dialog').close(); try {await createProject(name);}catch(err){notice(err.message,true);}});
   $('close-dialog').addEventListener('click',()=>$('project-dialog').close()); $('cancel-dialog').addEventListener('click',()=>$('project-dialog').close());
   $('load-sample').addEventListener('click',importSample);
+  $('load-architecture').addEventListener('click',async()=>{try{const s=await api('/api/sample');$('architecture-input').value=JSON.stringify(s.architecture,null,2);notice('Synthetic access-policy example loaded.');}catch(e){notice(e.message,true);}});
   $('run-analysis').addEventListener('click',analyzeProject);
   $('download-zip').addEventListener('click',()=>{ if (state.project?.result) window.location.assign(`/api/projects/${state.project.id}/download`); });
   ['aspx-input','codebehind-input'].forEach(id=>$(id).addEventListener('input',updateLines));

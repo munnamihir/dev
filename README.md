@@ -72,3 +72,10 @@ samples/               Synthetic Web Forms sample
 ## Security notes
 
 This starter is **local-first** and deliberately does not implement multi-user authentication. Do **not** expose it to the public internet or upload confidential code. No source is sent to external AI services. The generated API stub does **not** implement the legacy application's business logic. Before a hosted SaaS launch, add authenticated tenants, secure secrets, sandboxed processing, rate limiting, retention policies, security reviews and tenant isolation.
+## v0.2 — multi-module API architecture
+
+The migration studio accepts an optional JSON architecture manifest describing each module's API basePath, a separate Common API for dbo-backed shared resources, an OIDC identity contract, per-endpoint permissions and role alternatives. Use the synthetic `samples/architecture.json` fixture to explore. No employer source, credentials or proprietary RFP code are included.
+
+Generated artifacts include Angular permission guard, OIDC adapter contract, same-origin auth interceptor, module-specific API clients, per-module secured .NET controllers, JWT validation policy registrations, and an API policy matrix. Optional screen bindings connect a screen's list/read and write operations to explicitly declared endpoints; read results get loading/empty/401/403 states.
+
+**Security limitation:** This is a scaffolding generator, NOT a functioning enterprise SSO product or behavior-preserving migration engine. Connect an audited OIDC integration and real DTOs, enforce authorization and resource ownership independently in every API, and review all generated controller bodies (which return HTTP 501).
