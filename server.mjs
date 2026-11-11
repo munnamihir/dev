@@ -3,6 +3,7 @@ import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { analyze } from './lib/engine.mjs';
+import { discoverApplication } from './lib/discovery.mjs';
 import { createProject, saveProject, getProject, listProjects, deleteProject } from './lib/store.mjs';
 import { zipFiles } from './lib/zip.mjs';
 
@@ -37,7 +38,13 @@ async function route(req,res) {
   const pathname = url.pathname;
   if (pathname.startsWith('/api/')) {
     try {
-      if (pathname === '/api/health' && req.method === 'GET') return send(res,200,{ok:true,version:'0.2.0',engine:'deterministic'});
+      if (pathname === '/api/health' && req.method === 'GET') return send(res,200,{ok:true,version:'0.3.0',engine:'deterministic'});
+      if (pathname === '/api/discovery/sample' && req.method === 'GET') {
+        return send(res, 200, JSON.parse(await readFile(path.join(root,'samples/discovery.json'),'utf8')));
+      }
+      if (pathname === '/api/discovery/analyze' && req.method === 'POST') {
+        return send(res, 200, discoverApplication(await bodyJson(req)));
+      }
       if (pathname === '/api/sample' && req.method === 'GET') {
         const aspx = await readFile(path.join(root, 'samples/CustomerRegistration.aspx'), 'utf8');
         const codeBehind = await readFile(path.join(root, 'samples/CustomerRegistration.aspx.cs'), 'utf8');
@@ -83,7 +90,7 @@ async function route(req,res) {
     }
   }
   if (req.method !== 'GET' && req.method !== 'HEAD') return send(res,405,{error:'Method not allowed'});
-  const assets = new Map([['/', 'index.html'], ['/app.js','app.js'], ['/style.css','style.css']]);
+  const assets = new Map([['/', 'index.html'], ['/app.js','app.js'], ['/style.css','style.css'], ['/discovery','discovery.html'], ['/discovery.js','discovery.js'], ['/discovery.css','discovery.css']]);
   const asset = assets.get(pathname);
   if (!asset) return send(res,404,{error:'Not found'});
   const bytes = await readFile(path.join(root, 'public', asset));
