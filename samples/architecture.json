@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "auth": {
+    "provider": "oidc",
+    "permissionClaim": "permission",
+    "roleClaim": "role"
+  },
+  "modules": [
+    {
+      "key": "registrations",
+      "kind": "module",
+      "basePath": "/api/registrations",
+      "endpoints": [
+        {
+          "name": "listRegistrations",
+          "method": "GET",
+          "path": "/items",
+          "permission": "registrations.read",
+          "allowedRoles": [
+            "RegistrationAdmin"
+          ]
+        },
+        {
+          "name": "submitRegistration",
+          "method": "POST",
+          "path": "/items",
+          "permission": "registrations.write",
+          "allowedRoles": [
+            "RegistrationAdmin"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "common",
+      "kind": "common",
+      "basePath": "/api/common",
+      "endpoints": [
+        {
+          "name": "listRegions",
+          "method": "GET",
+          "path": "/lookups/regions",
+          "permission": "common.lookup.read",
+          "sourceSchema": "dbo"
+        }
+      ]
+    }
+  ],
+  "screenBinding": {
+    "module": "registrations",
+    "loadEndpoint": "listRegistrations",
+    "submitEndpoint": "submitRegistration"
+  }
+}
