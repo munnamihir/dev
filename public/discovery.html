@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ScreenShift repository discovery engine">
+<title>Application Discovery — ScreenShift</title>
+<link rel="stylesheet" href="/discovery.css"><script src="/discovery.js" defer></script></head>
+<body><div class="wrap">
+<header><a class="logo" href="/"><span class="mark">S</span>screen<span class="accent">shift</span></a><div class="right"><a href="/">← Migration studio</a><span class="pill green">LOCAL ENGINE</span></div></header>
+<main>
+<div class="hero"><div class="eyebrow">SCREENSHIFT / VERSION 0.3 / DISCOVERY</div>
+<h1>Understand the system.<br><em>Before you migrate it.</em></h1>
+<p>Identify candidate modules, screens, separate backend APIs, Common API references and authorization evidence. Trace what can be proven—and flag everything that cannot.</p></div>
+<div class="columns"><section class="panel"><div class="eyebrow">01 / SOURCE IMPORT</div><h2>Explore an application</h2>
+<p>Select a source folder or individual files. Only supported source text is loaded. No source is sent to an AI provider or stored by the discovery API.</p>
+<div class="buttons"><label class="btn primary" for="folder">↑ Select source folder</label><input id="folder" type="file" webkitdirectory directory multiple aria-label="Select application source folder">
+<label class="btn outline" for="files">Select files</label><input id="files" type="file" multiple accept=".aspx,.ascx,.cs,.ts,.tsx,.js,.jsx,.html" aria-label="Select individual source files">
+<button class="btn link" type="button" id="sample">Explore synthetic sample →</button></div>
+<div id="selection" class="selection" role="status" aria-live="polite">No files selected. Load the synthetic sample to explore the system.</div>
+<div class="row"><small>200 files max · 150 KB/file · 1.5 MB total</small><button id="analyze" class="btn primary" disabled>Analyze architecture ↗</button></div>
+</section><section class="panel"><div class="eyebrow">THE WORKFLOW</div><h2>Evidence-first discovery</h2>
+<div class="step"><span>01</span><div><b>Inventory</b><small>Candidate modules, screens and API controllers</small></div></div>
+<div class="step"><span>02</span><div><b>Trace</b><small>Literal API routes and policy annotations</small></div></div>
+<div class="step"><span>03</span><div><b>Evaluate</b><small>Missing links and authorization review findings</small></div></div>
+<div class="step"><span>04</span><div><b>Export</b><small>Machine-readable application graph report</small></div></div>
+<div class="warning"><strong>Security boundary</strong><p>Frontend checks are not security. Each real module API and Common API must enforce authorization on the backend.</p></div>
+</section></div>
+<section id="results" hidden aria-live="polite"><div class="sectionhead"><div><div class="eyebrow">02 / DISCOVERY REPORT</div><h2>System topology</h2></div><button class="btn outline" id="export">↓ Export JSON</button></div>
+<div id="metrics" class="metrics"></div>
+<div class="columns report"><article class="panel"><div class="eyebrow">MODULE TOPOLOGY</div><h3>Detected boundaries</h3><div id="modules"></div></article><article class="panel"><div class="eyebrow">API CONNECTIONS</div><h3>Traceable calls</h3><div id="edges"></div></article></div>
+<div class="columns report"><article class="panel"><div class="eyebrow">AUTHORIZATION REVIEW</div><h3>Findings</h3><div id="findings"></div></article><article class="panel"><div class="eyebrow">SOURCE EVIDENCE</div><h3>File inventory</h3><div id="inventory"></div></article></div>
+<p class="footnote">Heuristic static analysis is not proof of runtime behavior, a security audit or an automated whole-application migration. Dynamic routes, inherited policies and gateway rewrites require human verification.</p></section>
+</main><footer>SCREENSHIFT / ENGINEERING WORKBENCH <span>Local-only analysis · Not for unauthorized proprietary code</span></footer>
+</div></body></html>
