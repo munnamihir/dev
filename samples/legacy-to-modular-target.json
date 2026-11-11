@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "auth": {
+    "provider": "oidc"
+  },
+  "modules": [
+    {
+      "key": "orders",
+      "kind": "module",
+      "basePath": "/api/orders"
+    },
+    {
+      "key": "common",
+      "kind": "common",
+      "basePath": "/api/common",
+      "sourceSchema": "dbo"
+    }
+  ],
+  "screens": [
+    {
+      "source": "Legacy.Web/Modules/Orders/EditOrder.aspx",
+      "module": "orders",
+      "route": "/orders/edit",
+      "load": {
+        "module": "orders",
+        "method": "GET",
+        "path": "/api/orders/items",
+        "permission": "orders.read"
+      },
+      "lookups": [
+        {
+          "module": "common",
+          "method": "GET",
+          "path": "/api/common/lookups/regions",
+          "permission": "common.lookup.read",
+          "sourceSchema": "dbo"
+        }
+      ],
+      "submit": {
+        "module": "orders",
+        "method": "POST",
+        "path": "/api/orders/items",
+        "permission": "orders.write"
+      }
+    }
+  ]
+}
