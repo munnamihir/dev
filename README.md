@@ -21,6 +21,18 @@ npm test
 
 Set `PORT=4174` to change the port. The service binds to `127.0.0.1` by default; set `HOST` explicitly only if you have added appropriate access controls. Local projects persist under `.data/`, which is gitignored.
 
+## Repository-wide application discovery (v0.3)
+
+Open **http://localhost:4173/discovery** or use **Application discovery** in the workbench navigation. Select a local folder or load the synthetic sample to discover candidate modules, Web Forms screens, API controllers, literal client-to-API routes, Common API references, authorization annotations and `dbo` database references.
+
+The discovery engine is **deterministic and heuristic**. Unresolved links and unverified policies are explicitly marked for human review; findings are not a security certification, a proven call graph or behavior-equivalent migration. It supports source folders with up to 200 files / 1.5 MB text, excluding hidden or credential-like paths. Sources are sent only to the local server for transient analysis and are **not executed or persisted** by the discovery endpoint.
+
+- `GET /api/discovery/sample` — synthetic multi-module sample (no employer-owned source)
+- `POST /api/discovery/analyze` — accepts `{"files":[{"path":"...","content":"..."}]}`
+- `/discovery` — import UI, module and API report, policy findings, downloadable JSON
+
+Not supported yet: AST/Roslyn dependency tracing, dynamic routes, inherited/global authorization, runtime verification, cross-repository analysis, and full autonomous migration.
+
 ## Working features
 
 - Multiple local migration projects; create, list, delete, and persist.
